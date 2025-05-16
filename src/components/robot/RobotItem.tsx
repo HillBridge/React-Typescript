@@ -1,4 +1,4 @@
-
+import styles from './Robot.module.css'
 
 interface RobotProps {
     id: number
@@ -6,11 +6,10 @@ interface RobotProps {
     email: string
 }
 
-
-function Robot({ id, name, email }: RobotProps) {
+function RobotItem({ id, name, email }: RobotProps) {
     return (
       <>
-        <div>
+        <div className={styles.cardContainer}>
             <img src={`https://robohash.org/${id}`} alt="robot" />
             <h2>{name}</h2>
             <p>{email}</p>
@@ -32,4 +31,4 @@ function Robot({ id, name, email }: RobotProps) {
 //       )
 // }
   
-  export default Robot
+  export default RobotItem

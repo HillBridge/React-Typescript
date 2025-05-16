@@ -1,10 +1,13 @@
-import robots from '../../mock/robot.json'
+import robots from './robot.json'
+import styles from './Robot.module.css'
 import RobotItem from './RobotItem'
 
 function Robot() {
     return (
       <>
-        {robots.map(r => <RobotItem key={r.id} id={r.id} name={r.name} email={r.email}/>)}
+        <div className={styles.robotList}>
+            {robots.map(r => <RobotItem key={r.id} id={r.id} name={r.name} email={r.email}/>)}
+        </div>
       </>
     )
 }
