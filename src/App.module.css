@@ -16,7 +16,7 @@
   pointer-events: none;
 }
 
-h1 {
+.appTitle {
   font-family: 'Slidefu';
   font-size: 72px;
 }
