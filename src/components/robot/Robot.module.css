@@ -8,15 +8,30 @@
 	backface-visibility: hidden;
 	transform: translateZ(0);
 	transition: transform 0.25s ease-out;
+	padding-bottom: 20px;
 }
 
 .cardContainer:hover {
 	transform: scale(1.05);
 }
 
+.buy {
+	background-color: #00BDAB;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.buy:hover {
+	background-color: #009d8d;
+	color: white;
+}
+
 
 .robotList {
-	width: 85vw;
+	width: 100vw;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	grid-gap: 20px;
