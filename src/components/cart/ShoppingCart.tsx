@@ -6,14 +6,17 @@ import styles from './ShoppingCart.module.css';
 interface ShoppingCartProps { }
 
 interface ShoppingCartState {
-    isOpen: boolean
+    isOpen: boolean,
+    count: number
 }
 
 class ShoppingCart extends React.Component<ShoppingCartProps, ShoppingCartState> {
     constructor(props: ShoppingCartProps) {
         super(props)
+        //setState 是异步更新 同步执行
         this.state = {
-            isOpen: false
+            isOpen: false,
+            count: 0
         }
     }
     // 为react事件添加类型
@@ -30,8 +33,12 @@ class ShoppingCart extends React.Component<ShoppingCartProps, ShoppingCartState>
     }
     render() {
         return <div className={styles.cardContainer}>
+            <div>
+                <button onClick={() =>  this.setState((prevState) => ({count: prevState.count + 1}))}>点击</button>
+                <span>{ this.state.count }</span>
+            </div>
             <button className={styles.button} onClick={this.handleClickAddCart}><FiShoppingCart /><span>购物车2件</span></button>
-            <div className={styles.cardDropDown} style={{display: this.state.isOpen ? 'block' : 'none'}}>
+            <div className={styles.cardDropDown} style={{ display: this.state.isOpen ? 'block' : 'none' }}>
                 <ul>
                     <li>robot1</li>
                     <li>robot2</li>
