@@ -42,11 +42,11 @@ const ShoppingCart: React.FC<ShoppingCartProps> = () => {
     }, [count])
 
     // 组件卸载前的执行函数 
-    useEffect(() => {
-        return () => {
-            console.log('组件卸载')
-        }
-    }, [])
+    // useEffect(() => {
+    //     return () => {
+    //         console.log('组件卸载')
+    //     }
+    // }, [])
     return (
         <div className={styles.cardContainer}>
             <div>

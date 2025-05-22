@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './App.module.css'
 import Logo from './assets/images/logo.svg'
 import ShoppingCart from './components/cart/ShoppingCart'
 import Robot from './components/robot/Robot'
+import { ThemeContext, type ThemeContextType } from './context/theme'
 
  
 // interface AppProps { }
@@ -74,24 +75,38 @@ const App: React.FC = () => {
   //   console.log('componentDidUpdate', prevProps, prevState)
   // }
 
-  // 组件卸载前的执行函数 
+  // 组件卸载前的执行函数
   // componentWillUnmount(): void {
   //   console.log('componentWillUnmount')
   // }
+  
+  const [theme, setTheme] = useState('light')
+
+  const themeProviderValue: ThemeContextType = useMemo(() => {
+    return {
+      theme: theme,
+      toggleTheme() {
+        setTheme(theme === 'light' ? 'dark' : 'light')
+      }
+    }
+  }, [theme])
 
   // 组件更新 执行
   return (
-    <div className={styles.app}>
-      <div className={styles.appHeader}>
-        <img src={Logo} className={styles.appLogo} alt="logo" />
-        <h1 className={styles.appTitle}>罗伯特机器人炫酷吊炸天online购物平台的名字要长</h1>
+    <ThemeContext.Provider value={themeProviderValue}>
+      <div className={styles.app}>
+        <div><button onClick={themeProviderValue.toggleTheme}>切换主题</button></div>
+        <div className={styles.appHeader}>
+          <img src={Logo} className={styles.appLogo} alt="logo" />
+          <h1 className={styles.appTitle}>罗伯特机器人炫酷吊炸天online购物平台的名字要长</h1>
+        </div>
+        <ShoppingCart />
+        {error && `报错信息:{error}`}
+        {
+          loading ? <h2 style={{fontSize: '30px', color: 'orange'}}>loading...</h2> : <Robot userList={userList} />
+        }
       </div>
-      <ShoppingCart />
-      {error && `报错信息:{error}`}
-      {
-        loading ? <h2 style={{fontSize: '30px', color: 'orange'}}>loading...</h2> : <Robot userList={userList} />
-      }
-    </div>
+    </ThemeContext.Provider>
   )
 }
 
