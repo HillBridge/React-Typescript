@@ -1,10 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './App.tsx'
+import { GlobalContext, globalDefaultValue } from './context/global.ts'
+import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <GlobalContext.Provider value={globalDefaultValue}>
+      <App />
+    </GlobalContext.Provider>
+
   </StrictMode>,
 )
