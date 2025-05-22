@@ -3,10 +3,10 @@ import React from 'react'
 export interface GlobalContextType {
     username: string,
     shoppingCart: { item: { id: number, name: string }[] },
-    setShoppingCart: (item: { id: number, name: string }[]) => void
+    setShoppingCart: (item: { id: number, name: string }) => void
 }
 
-export const globalDefaultValue: GlobalContextType = {
+export const globalDefaultValue:GlobalContextType = {
     username: 'bridge',
     shoppingCart: {
         item: []

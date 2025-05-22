@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FiShoppingCart } from "react-icons/fi";
+import { GlobalContext } from '../../context/global';
 import styles from './ShoppingCart.module.css';
 
 interface ShoppingCartProps { }
@@ -47,17 +48,18 @@ const ShoppingCart: React.FC<ShoppingCartProps> = () => {
     //         console.log('组件卸载')
     //     }
     // }, [])
+
+    const { shoppingCart } = useContext(GlobalContext)
     return (
-        <div className={styles.cardContainer}>
+        <div className={styles.cartContainer}>
             <div>
                 <button onClick={() => setCount(count + 1)}>点击</button>
                 <span>{ count }</span>
             </div>
-            <button className={styles.button} onClick={handleClickAddCart}><FiShoppingCart /><span>购物车2件</span></button>
-            <div className={styles.cardDropDown} style={{ display: isOpen ? 'block' : 'none' }}>
+            <button className={styles.button} onClick={handleClickAddCart}><FiShoppingCart /><span>购物车{ shoppingCart.item.length }件</span></button>
+            <div className={styles.cartDropDown} style={{ display: isOpen ? 'block' : 'none' }}>
                 <ul>
-                    <li>robot1</li>
-                    <li>robot2</li>
+                    {shoppingCart.item.map(item => <li key={item.id}>{item.name}</li>)}
                 </ul>
             </div>
         </div>

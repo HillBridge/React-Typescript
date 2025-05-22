@@ -10,13 +10,17 @@ interface RobotProps {
 }
 
 function Robot({ userList }: RobotProps) {
-  const { username } = useContext(GlobalContext)
+  const { username, setShoppingCart } = useContext(GlobalContext)
   const { theme } = useContext(ThemeContext)
+
+  const addShoppingCart = (item: { id: number, name: string }) => {
+    setShoppingCart(item)
+  }
     return (
       <>
         <div className={styles.robotList} style={{ backgroundColor: theme === 'light' ? 'white' : 'black' }}>
             {userList.map(r => <RobotItem key={r.id} id={r.id} name={r.name} email={r.email}>
-              <button className={styles.buy}>Buy Me</button>
+              <button className={styles.buy} onClick={() => addShoppingCart({ id: r.id, name: r.name })}>加入购物车</button>
               <p>作者: {username}</p>
             </RobotItem>)}
         </div>
