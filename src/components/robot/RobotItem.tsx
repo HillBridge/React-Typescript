@@ -2,8 +2,8 @@ import styles from './Robot.module.css'
 
 // 直接对函数的参数进行类型定义
 interface RobotProps {
-    id: number
-    name: string
+  id: number
+  name: string
   email: string,
   children: React.ReactNode
 }

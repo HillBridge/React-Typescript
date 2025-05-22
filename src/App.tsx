@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './App.module.css'
 import Logo from './assets/images/logo.svg'
 import ShoppingCart from './components/cart/ShoppingCart'
@@ -13,7 +13,7 @@ import Robot from './components/robot/Robot'
 //   userList: any[]
 // }
 
-const App = () => {
+const App: React.FC = () => {
   // 初始化组件的生命周期 constructor => getDerivedStateFromProps => render => componentDidMount
   // constructor(props: AppProps) {
   //   super(props)
@@ -37,7 +37,8 @@ const App = () => {
   //   .then(data => this.setState({userList: data}))
   // }
 
-  const [userList, setUserList] = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [userList, setUserList] = useState<any>([])
 
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
