@@ -32,10 +32,21 @@ const ShoppingCart: React.FC<ShoppingCartProps> = () => {
             setIsOpen(!isOpen)
         }
     }
-
+    // useEffect 是react的副作用函数 在组件挂载后执行
+    // 当第二个参数有值时 相当于类组件的componentDidUpdate
+    // 当第二个参数没有值时 相当于类组件的componentDidMount
+    // 当第二个参数什么也不传时, 会在每次render后执行, 要防止死循环一直调用
+    // 一个组件中可以写多个useEffect
     useEffect(() => {
         document.title = `点击了${count}次`
     }, [count])
+
+    // 组件卸载前的执行函数 
+    useEffect(() => {
+        return () => {
+            console.log('组件卸载')
+        }
+    }, [])
     return (
         <div className={styles.cardContainer}>
             <div>
