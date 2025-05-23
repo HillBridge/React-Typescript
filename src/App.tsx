@@ -5,7 +5,6 @@ import ShoppingCart from './components/cart/ShoppingCart'
 import Robot from './components/robot/Robot'
 import RobotDiscount from './components/robot/RobotDiscount'
 import { ThemeContext } from './context/theme'
-
 interface User {
   id: number;
   name: string;

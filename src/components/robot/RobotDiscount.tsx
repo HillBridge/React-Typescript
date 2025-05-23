@@ -1,8 +1,15 @@
-import withAddToCart, { type RobotProps } from '../hoc/AddToCart'
+import useAddToCart from '../hooks/AddToCart'
 import styles from './Robot.module.css'
 import RobotItem from './RobotItem'
 
-function RobotDiscount({ id, name, email, addShoppingCart, username, theme }: RobotProps) {
+interface RobotDiscountProps {
+  id: number
+  name: string
+  email: string
+}
+
+function RobotDiscount({ id, name, email }: RobotDiscountProps) {
+  const { addShoppingCart, username, theme } = useAddToCart()
     return (
       <>
         <div style={{ backgroundColor: theme === 'light' ? 'white' : 'black' }}>
@@ -15,4 +22,4 @@ function RobotDiscount({ id, name, email, addShoppingCart, username, theme }: Ro
     )
 }
 
-export default withAddToCart(RobotDiscount)
+export default RobotDiscount
