@@ -3,14 +3,19 @@ import styles from './App.module.css'
 import Logo from './assets/images/logo.svg'
 import ShoppingCart from './components/cart/ShoppingCart'
 import Robot from './components/robot/Robot'
+import RobotDiscount from './components/robot/RobotDiscount'
 import { ThemeContext } from './context/theme'
 
- 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 // interface AppProps { }
 
 // 使用any类型来避免类型检查 因为api返回的数据是后端定义的 可能会更改 所以不加类型校验
 // interface AppState {
-//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 //   userList: any[]
 // }
 
@@ -39,8 +44,7 @@ const App: React.FC = () => {
   // }
 
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [userList, setUserList] = useState<any>([])
+  const [userList, setUserList] = useState<User[]>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
@@ -53,9 +57,9 @@ const App: React.FC = () => {
         setUserList(data)
       }
       fetchData()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (e: any) {
-      if (e in Error) {
+     
+    } catch (e: unknown) {
+      if (e instanceof Error) {
         setError(e.message)
       }
     } finally {
@@ -91,9 +95,18 @@ const App: React.FC = () => {
           <h1 className={styles.appTitle}>罗伯特机器人炫酷吊炸天online购物平台的名字要长</h1>
         </div>
         <ShoppingCart />
-        {error && `报错信息:{error}`}
+        {error && `报错信息:${error}`}
         {
-          loading ? <h2 style={{fontSize: '30px', color: 'orange'}}>loading...</h2> : <Robot userList={userList} />
+        loading ? <h2 style={{ fontSize: '30px', color: 'orange' }}>loading...</h2> :
+          <div className={styles.robotList}>
+            {userList.map((r: User, index: number) => {
+              if (index % 2 === 0) {
+                return <RobotDiscount key={r.id} id={r.id} name={r.name} email={r.email} />
+              } else {
+                return <Robot key={r.id} id={r.id} name={r.name} email={r.email} />
+              }
+            })}
+          </div>
         }
       </div>
   )

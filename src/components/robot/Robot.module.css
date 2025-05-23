@@ -37,3 +37,8 @@
 	grid-gap: 20px;
 	box-sizing: border-box;
 }
+
+.discount{
+	color: orangered;
+	font-size: 16px;
+}
