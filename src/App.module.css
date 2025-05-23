@@ -28,9 +28,9 @@
 }
 
 .robotList {
-	width: 100vw;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 20px;
-	box-sizing: border-box;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  box-sizing: border-box;
 }
